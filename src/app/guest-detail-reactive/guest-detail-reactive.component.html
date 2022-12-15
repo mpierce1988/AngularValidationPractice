@@ -1,0 +1,74 @@
+<div class="container">
+    <div *ngIf="message" style="color:red;text-align:center;">{{message}}</div>
+<h2 style="text-align: center;">Guest - Reactive Validation</h2>
+
+<div class="card-container">
+    <div class="card">
+        <div *ngIf="guest.id">
+            <span>ID: </span>{{guest.id}}
+        </div>
+        <!-- Don't forget to add ReactiveFormsModule to imports in app.module -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="guestForm">
+            <div>
+                <label>First Name:</label>
+                <br>
+                <input formControlName="firstName" type="text" class="form-control">
+                <i 
+                {attr.title]="
+                    firstName?.errors?.['required']
+                    ? 'First Name is required'
+                    : firstName?.errors?.['minlength']
+                    ? 'First name min length is 2'
+                    : ''
+                "
+                
+                class="fas fa-bomb fa-2x"
+                *ngIf="(firstName?.errors?.['required'] || firstName?.errors?.['minlength']) && this.submitted && !isValidFormSubmitted"
+                    ></i>
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <br>
+                <input formControlName="lastName" type="text" class="form-control">
+                <i
+                [attr.title] = "
+                    lastName?.errors?.['required']
+                    ? 'Last Name is required'
+                    : lastName?.errors?.['minlength']
+                    ? 'Last name min length is 2'
+                    : ''
+                "
+                class="fas fa-bomb fa-2x"
+                *ngIf="(lastName?.errors?.['required'] || lastName?.errors?.['minlength']) && this.submitted && !isValidFormSubmitted"
+                ></i>
+
+            </div>
+            <div>
+                <label>Birthdate:</label>
+                <br>
+                <input type="date" formControlName="birthDate" class="form-control">
+                <i
+                    [attr.title] = "
+                        birthDate?.errors?.['required']
+                        ? 'Birthdate is required'
+                        : ''
+                    "
+                    class="fas fa-bomb fa-2x"
+                    *ngIf="(birthDate?.errors?.['required']) && this.submitted && !isValidFormSubmitted"
+                ></i>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">Is VIP?:</label>
+                <br>
+                <input type="checkbox" formControlName="isVIP" class="form-check-input">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">{{btnMessage}}</button>
+        </form>
+        <div>
+            {{saveMessage}}
+        </div>
+    </div>
+</div>
+
+</div>

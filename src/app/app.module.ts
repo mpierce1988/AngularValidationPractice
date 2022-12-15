@@ -7,9 +7,11 @@ import { GuestDetailComponent} from './guest-detail/guest-detail.component';
 import { GuestsComponent } from './guests/guests.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GuestService } from './service/guest.service';
+import { GuestDetailReactiveComponent } from './guest-detail-reactive/guest-detail-reactive.component';
+
 
 
 
@@ -18,13 +20,15 @@ import { GuestService } from './service/guest.service';
     AppComponent,   
     GuestDetailComponent,
     GuestsComponent,
-    NavbarComponent, 
+    NavbarComponent,
+    GuestDetailReactiveComponent,    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GuestService],
   bootstrap: [AppComponent]
