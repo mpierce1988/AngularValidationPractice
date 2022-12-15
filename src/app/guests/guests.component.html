@@ -17,7 +17,7 @@
         <tbody>
             <tr *ngFor="let guest of guests">
                 <td>{{guest.firstName}} {{guest.lastName}}</td>
-                <td>{{guest.birthDate}}</td>
+                <td>{{guest.birthDate | date:'shortDate'}}</td>
                 <td>{{guest.isVIP == false ? "No" : "Yes"}}</td>
                 <td>
                     <button 

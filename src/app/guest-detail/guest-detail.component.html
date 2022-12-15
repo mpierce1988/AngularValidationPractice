@@ -1,19 +1,21 @@
 <div class="container">
+    <div *ngIf="message" style="color: red;" class="text-center">{{message}}</div>
     <h1 class="text-center">Guest Details</h1>
 
     <div class="card-container">
         <div class="card">
-            <form #guestForm="ngForm" >
+            <form #guestForm="ngForm" (ngSubmit)="onFormSubmit(guestForm)">
                 <div>
-                    <label class="form-label">First Name:</label>
-                    <br>
-                    <input 
-                    #firstName="ngModel" 
-                    [(ngModel)]="guest.firstName"
-                    name="firstName" 
-                    class="form-control"
-                    required
-                    minlength="2">
+                    <label class="form-label">First Name:
+                        <br>
+                        <input 
+                        #firstName="ngModel" 
+                        [(ngModel)]="guest.firstName"
+                        name="firstName" 
+                        class="form-control"
+                        required
+                        minlength="2">
+                    </label>
                     <i
                         [attr.title]="
                         firstName?.errors?.['required']
@@ -23,13 +25,13 @@
                         :'' 
                         "
                         class="fas fa-bomb fa-2x"
-                        *ngIf="(firstName?.errors?.['required'] || firstName?.errors?.['minlength']) && !isFormValidated"
+                        *ngIf="(firstName?.errors?.['required'] || firstName?.errors?.['minlength']) && !isFormValidated && guestForm.submitted"
                     >
 
                     </i>
                 </div>
                 <div>
-                    <label class="form-label">Last Name:</label>
+                    <label class="form-label">Last Name:
                     <br>
                     <input 
                     #lastName="ngModel" 
@@ -38,6 +40,7 @@
                     class="form-control"
                     required
                     minlength="2">
+                    </label>
                     <i
                         [attr.title]="
                         lastName?.errors?.['required']
@@ -47,11 +50,42 @@
                         :'' 
                         "
                         class="fas fa-bomb fa-2x"
-                        *ngIf="(lastName?.errors?.['required'] || lastName?.errors?.['minlength']) && !isFormValidated"
+                        *ngIf="(lastName?.errors?.['required'] || lastName?.errors?.['minlength']) && !isFormValidated && guestForm.submitted"
                     >
 
                     </i>
                 </div>
+                <div>
+                    <label class="form-label">
+                        Birthdate: 
+                            <input 
+                            type="date"
+                            #birthdate = "ngModel"
+                            name = "birthDate"                             
+                            [ngModel]="guest.birthDate | date:'yyyy-MM-dd'"
+                            (ngModelChange)="guest.birthDate = $event"
+                            required>
+                    </label>
+                    
+                    <i
+                        [attr.title] = "
+                            birthdate?.errors?.['required'] 
+                            ? 'Birthdate is required' 
+                            : ''
+                        "
+                        class="fas fa-bomb fa-2x"
+                        *ngIf="(birthdate?.errors?.['required']) && !isFormValidated && guestForm.submitted"
+                    ></i>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">Is VIP
+                        <input type="checkbox" name="isVIP" class="form-check-input" [(ngModel)]="guest.isVIP">
+                    </label>
+                </div>
+                <button class="btn btn-primary">{{btnText}}</button>
+                <br>
+                <button *ngIf="guest.id" class="btn btn-secondary" (click)="delete()">Delete</button>
+                {{saveMessage}}
             </form>
         </div>
     </div>

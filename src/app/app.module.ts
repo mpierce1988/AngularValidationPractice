@@ -8,6 +8,8 @@ import { GuestsComponent } from './guests/guests.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { GuestService } from './service/guest.service';
 
 
 
@@ -24,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule
   ],
-  providers: [],
+  providers: [GuestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

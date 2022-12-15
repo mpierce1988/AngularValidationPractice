@@ -26,4 +26,30 @@ export class GuestService {
     
     return of(newId);
   }
+
+  public updateGuest(guest:Guest): Observable<boolean> {
+    let guestId = guest.id;
+    let oldGuest = GUESTS.find(g => g.id == guest.id);
+
+    if(oldGuest == null){
+      // no existing guest found with that id
+      return of(false);
+    }
+
+    let indexOldGuest = GUESTS.indexOf(oldGuest);
+    // insert new guest
+    GUESTS[indexOldGuest] = guest;
+    // return true after successful update
+    return of(true);
+  }
+
+  public deleteGuest(id:number): Observable<boolean> {
+    let guestToDelete = GUESTS.find(g => g.id == id);
+    if(guestToDelete == null){
+      return of(false);
+    }
+
+    GUESTS.splice(GUESTS.indexOf(guestToDelete), 1);
+    return of(true);
+  }
 }
