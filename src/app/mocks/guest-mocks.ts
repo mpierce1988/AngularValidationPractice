@@ -1,7 +1,7 @@
 import { Guest } from "../models/guest";
 
  
- const GUESTS: Guest[] = [
+ export let GUESTS: Guest[] = [
      {
          id: 1,
          firstName: "Steve",

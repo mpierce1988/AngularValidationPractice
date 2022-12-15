@@ -1,1 +1,58 @@
-<p>guest-detail works!</p>
+<div class="container">
+    <h1 class="text-center">Guest Details</h1>
+
+    <div class="card-container">
+        <div class="card">
+            <form #guestForm="ngForm" >
+                <div>
+                    <label class="form-label">First Name:</label>
+                    <br>
+                    <input 
+                    #firstName="ngModel" 
+                    [(ngModel)]="guest.firstName"
+                    name="firstName" 
+                    class="form-control"
+                    required
+                    minlength="2">
+                    <i
+                        [attr.title]="
+                        firstName?.errors?.['required']
+                        ? 'Guest First Name is required'
+                        : firstName?.errors?.['minlength']
+                        ? 'Guest First Name min length is 2'
+                        :'' 
+                        "
+                        class="fas fa-bomb fa-2x"
+                        *ngIf="(firstName?.errors?.['required'] || firstName?.errors?.['minlength']) && !isFormValidated"
+                    >
+
+                    </i>
+                </div>
+                <div>
+                    <label class="form-label">Last Name:</label>
+                    <br>
+                    <input 
+                    #lastName="ngModel" 
+                    [(ngModel)]="guest.lastName"
+                    name="lastName" 
+                    class="form-control"
+                    required
+                    minlength="2">
+                    <i
+                        [attr.title]="
+                        lastName?.errors?.['required']
+                        ? 'Guest Last Name is required'
+                        : lastName?.errors?.['minlength']
+                        ? 'Guest Last Name min length is 2'
+                        :'' 
+                        "
+                        class="fas fa-bomb fa-2x"
+                        *ngIf="(lastName?.errors?.['required'] || lastName?.errors?.['minlength']) && !isFormValidated"
+                    >
+
+                    </i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

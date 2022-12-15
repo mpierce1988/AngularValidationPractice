@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { GuestDetailComponent} from './guest-detail/guest-detail.component';
 import { GuestsComponent } from './guests/guests.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,12 +15,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,   
     GuestDetailComponent,
-    GuestsComponent, 
+    GuestsComponent,
+    NavbarComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

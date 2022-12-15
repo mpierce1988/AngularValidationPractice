@@ -1,1 +1,32 @@
-<p class="container">guests works!</p>
+<div class="container">
+    <h1 class="text-center">List of Guests</h1>
+    <div *ngIf="!guests">No guests found</div>
+    <table *ngIf="guests" class="table">
+        <thead>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Birthdate
+            </th>
+            <th>
+                VIP Status
+            </th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let guest of guests">
+                <td>{{guest.firstName}} {{guest.lastName}}</td>
+                <td>{{guest.birthDate}}</td>
+                <td>{{guest.isVIP == false ? "No" : "Yes"}}</td>
+                <td>
+                    <button 
+                    type="button" 
+                    class="btn btn-primary" 
+                    routerLink="/guests/{{guest.id}}"
+                    >Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
